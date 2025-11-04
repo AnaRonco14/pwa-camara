@@ -40,9 +40,15 @@ function takePhoto() {
         return;
     }
 
+    // Igualar dimensiones del canvas al tamaño real del video
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    // Dibujar el frame de video en el canvas sin distorsión
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
     const imageDataURL = canvas.toDataURL('image/png');
-    console.log('Foto tomada:', imageDataURL.substring(0, 50) + '...');
+    console.log('Foto capturada correctamente');
 
     closeCamera();
 }
