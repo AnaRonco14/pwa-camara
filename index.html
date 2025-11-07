@@ -22,7 +22,15 @@
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin: 5px; /* Ajuste para separar los botones */
+            transition: background-color 0.2s;
+        }
+        button:hover:not(:disabled) {
+            background-color: #333;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
         #cameraContainer {
             display: none;
@@ -33,6 +41,36 @@
             height: 240px;
             border-radius: 10px;
             margin-top: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos nuevos para la galería temporal */
+        #galleryContainer {
+            margin-top: 20px;
+            padding: 10px 0;
+            white-space: nowrap; /* Evita que las imágenes salten de línea */
+            overflow-x: auto; /* Habilita el scroll horizontal */
+            overflow-y: hidden; /* Oculta el scroll vertical */
+            -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        #galleryContainer img {
+            width: 150px; /* Tamaño de la miniatura */
+            height: 112px;
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsión */
+            border-radius: 5px;
+            margin-right: 10px;
+            display: inline-block; /* Permite la disposición horizontal */
+            vertical-align: top;
+        }
+        
+        /* Oculta el canvas para que solo se use para la captura */
+        #canvas {
+            display: none; 
         }
     </style>
 </head>
@@ -44,9 +82,17 @@
     <div id="cameraContainer">
         <video id="video" autoplay></video><br>
         <button id="takePhoto">Tomar Foto</button>
-        <canvas id="canvas" width="320" height="240"></canvas>
+        <!-- El canvas se usa solo para capturar el frame, lo ocultamos -->
+        <canvas id="canvas" width="320" height="240"></canvas> 
     </div>
 
+    <!-- Sección de la Galería Temporal -->
+    <h2>Galería Temporal</h2>
+    <button id="clearGallery">Limpiar Galería</button>
+    <div id="galleryContainer">
+        <!-- Las miniaturas de las fotos se insertarán aquí por JavaScript -->
+    </div>
+    
     <script src="app.js"></script>
 
     <script>

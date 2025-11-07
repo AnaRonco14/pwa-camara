@@ -1,9 +1,11 @@
 const CACHE_NAME = 'camara-pwa-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/app.js',
-    '/manifest.json'
+    './',
+    './index.html',
+    './app.js',
+    './manifest.json',
+    './icon-192.png', 
+    './icon-512.png'
 ];
 
 // Instalar SW
